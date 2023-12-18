@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function getData(){
+            try{
+                let response = await fetch(`https://ringsdb.com/api/public/card/01001`,{method: 'GET' })
+                let data = await response.json()
+
+                console.log(data);
+
+                let h1 = document.createElement('h1')
+                h1.textContent = data.name
+                document.body.appendChild(h1)
+                let img = document.createElement('img')
+
+                img.src = `https://ringsdb.com/${data.imagesrc}`
+                document.body.appendChild(img)
+
+
+
+
+            }
+            catch(error){
+                console.error('Error: ',error );
+            }
+        }
+        getData()
+    </script>
+</body>
+</html>
